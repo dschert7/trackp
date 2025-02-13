@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMIDI Connection Test</title>
+</head>
+<body>
+    <h1>WebMIDI Connection Test</h1>
+    <p id="status">Connecting...</p>
+    <pre id="messages"></pre>
+
+    <script>
+        if (navigator.requestMIDIAccess) {
+            navigator.requestMIDIAccess({ sysex: true }).then(onMIDISuccess, onMIDIFailure);
+        } else {
+            document.getElementById('status').textContent = 'WebMIDI is not supported in this browser.';
+        }
+
+        function onMIDISuccess(midiAccess) {
+            document.getElementById('status').textContent = 'WebMIDI is supported and connected!';
+            midiAccess.onstatechange = (event) => {
+                console.log(event.port.name, event.port.manufacturer, event.port.state);
+            };
+
+            const inputs = midiAccess.inputs.values();
+            for (let input of inputs) {
+                input.onmidimessage = getMIDIMessage;
+            }
+        }
+
+        function onMIDIFailure(error) {
+            document.getElementById('status').textContent = 'Failed to access WebMIDI: ' + error.message;
+            console.error('Failed to access WebMIDI:', error);
+        }
+
+        function getMIDIMessage(message) {
+            const command = message.data[0];
+            const note = message.data[1];
+            const velocity = message.data.length > 2 ? message.data[2] : 0;
+
+            const msg = `Command: ${command}, Note: ${note}, Velocity: ${velocity}`;
+            console.log(msg);
+            document.getElementById('messages').textContent += msg + '\n';
+
+            switch (command) {
+                case 144: // note on
+                    if (velocity > 0) {
+                        noteOn(note, velocity);
+                    } else {
+                        noteOff(note);
+                    }
+                    break;
+                case 128: // note off
+                    noteOff(note);
+                    break;
+                // handle other commands
+            }
+        }
+
+        function noteOn(note, velocity) {
+            console.log(`Note On: ${note} (velocity: ${velocity})`);
+        }
+
+        function noteOff(note) {
+            console.log(`Note Off: ${note}`);
+        }
+    </script>
+</body>
+</html>
