@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#tabs {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-right: 5px;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 10px;
+}
+
+.parameter {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.parameter-label {
+    font-weight: bold;
+}
+
+.empty {
+    border: none;
+}
