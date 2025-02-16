@@ -22,14 +22,27 @@ function handleMIDIMessage(message) {
             storedValues[selectedTab] = storedValues[selectedTab] || {};
             storedValues[selectedTab][data1] = data2;
             document.getElementById(`value-${data1}`).innerText = data2;
-            sendMIDIOut(parameter.CC_out, data2);
+            sendMIDIOut(parameter, data2);
         }
     }
 }
 
-function sendMIDIOut(ccNumber, value) {
+function sendMIDIOut(parameter, value) {
     if (midiOut) {
-        midiOut.send([176, ccNumber, value]);
+        if (parameter.isNRPN) {
+            const [msb, lsb] = parameter.NRPN_val.split(':').map(Number);
+            const valueMsb = (value >> 7) & 0x7F;       // Value MSB
+            const valueLsb = value & 0x7F;              // Value LSB
+
+            midiOut.send([176, 99, msb]);   // NRPN MSB
+            midiOut.send([176, 98, lsb]);   // NRPN LSB
+            midiOut.send([176, 6, valueMsb]); // Data Entry MSB
+            midiOut.send([176, 38, valueLsb]); // Data Entry LSB
+            midiOut.send([176, 101, 127]);  // RPN MSB (null)
+            midiOut.send([176, 100, 127]);  // RPN LSB (null)
+        } else {
+            midiOut.send([176, parameter.CC_out, value]);
+        }
     }
 }
 
