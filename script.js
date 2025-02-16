@@ -3,14 +3,18 @@ let storedValues = {};
 let midiOut, selectedTab = 0;
 
 async function initMIDI() {
-    const access = await navigator.requestMIDIAccess();
-    const inputs = access.inputs.values();
-    for (let input of inputs) {
-        input.onmidimessage = handleMIDIMessage;
+    try {
+        const access = await navigator.requestMIDIAccess();
+        const inputs = access.inputs.values();
+        for (let input of inputs) {
+            input.onmidimessage = handleMIDIMessage;
+        }
+        const outputs = access.outputs.values();
+        midiOut = outputs.next().value;
+        console.log("MIDI initialized");
+    } catch (error) {
+        console.error("Failed to access Web MIDI API:", error);
     }
-    const outputs = access.outputs.values();
-    midiOut = outputs.next().value;
-    console.log("MIDI initialized");
 }
 
 function handleMIDIMessage(message) {
