@@ -10,7 +10,7 @@ const midiConfig = {
                 { name: "cents", CC_in: 87, isNRPN: false, CC_out: 27, range: [0, 127] },    //encoder 8
                 { name: "wave", CC_in: 80, isNRPN: false, CC_out: 19, range: [0, 29] },    //encoder 1
                 { name: "pulse width index", CC_in: 82, isNRPN: false, CC_out: 21, range: [0, 127] },    //encoder 3
-                { name: "density", CC_in: 84, isNRPN: false, CC_out: 24, range: [0, 127] },    //encoder 5
+                { name: "density", CC_in: 84, isNRPN: false, CC_out: 24, range: [-64, 63] },    //encoder 5
                 { name: "semitones", CC_in: 86, isNRPN: false, CC_out: 26, range: [0, 127] }    //encoder 7
                 // Add other parameters as needed
             ]
