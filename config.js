@@ -32,13 +32,33 @@ const midiConfig = {
         },
         {
             pageNum: 3,
-            pagelabel: "Effects",
+            pagelabel: "Mixer",
             parameters: [
-                { name: "Param1", CC_in: 80, isNRPN: true, NRPN_val: "0:1", range: [0, 127] },
-                { name: "Param2", CC_in: 81, isNRPN: false, CC_out: 20, range: [0, 127] },
+                { name: "osc 2 lvl", CC_in: 81, isNRPN: false, CC_out: 52, range: [0, 127] },    //encoder 2
+                { name: "noise lvl", CC_in: 83, isNRPN: false, CC_out: 56, range: [0, 127] },    //encoder 4
+                { name: "post FX level", CC_in: 85, isNRPN: false, CC_out: 59, range: [52, 82] },    //encoder 6
+                { name: "none", CC_in: 87, isNRPN: false, CC_out: 00, range: [0, 127] },    //encoder 8
+                { name: "osc 1 lvl", CC_in: 80, isNRPN: false, CC_out: 51, range: [0, 127] },    //encoder 1
+                { name: "ring mod lvl", CC_in: 82, isNRPN: false, CC_out: 54, range: [0, 127] },    //encoder 3
+                { name: "pre FX level", CC_in: 84, isNRPN: false, CC_out: 58, range: [52, 82] },    //encoder 5
+                { name: "none", CC_in: 86, isNRPN: false, CC_out: 00, range: [0, 127] }    //encoder 7
                 // Add other parameters as needed
             ]
-        }
+        },
+        {
+            pageNum: 4,
+            pagelabel: "Filter",
+            parameters: [
+                { name: "drive", CC_in: 81, isNRPN: false, CC_out: 63, range: [0, 127] },    //encoder 2
+                { name: "type", CC_in: 83, isNRPN: false, CC_out: 68, range: [0, 5] },    //encoder 4
+                { name: "tracking", CC_in: 85, isNRPN: false, CC_out: 69, range: [0, 127] },    //encoder 6
+                { name: "Q normalize", CC_in: 87, isNRPN: false, CC_out: 78, range: [0, 127] },    //encoder 8
+                { name: "routing", CC_in: 80, isNRPN: false, CC_out: 60, range: [0, 2] },    //encoder 1
+                { name: "drive type", CC_in: 82, isNRPN: false, CC_out: 65, range: [0, 6] },    //encoder 3
+                { name: "frequency", CC_in: 84, isNRPN: false, CC_out: 74, range: [52, 82] },    //encoder 5
+                { name: "resonance", CC_in: 86, isNRPN: false, CC_out: 71, range: [0, 127] }    //encoder 7
+                // Add other parameters as needed
+            ]
         // Add other pages as needed
     ]
 };
