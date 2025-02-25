@@ -59,6 +59,7 @@ const midiConfig = {
                 { name: "resonance", CC_in: 86, isNRPN: false, CC_out: 71, range: [0, 127] }    //encoder 7
                 // Add other parameters as needed
             ]
+        }
         // Add other pages as needed
     ]
 };
