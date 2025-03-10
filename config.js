@@ -59,6 +59,36 @@ const midiConfig = {
                 { name: "resonance", CC_in: 86, isNRPN: false, CC_out: 71, range: [0, 127] }    //encoder 7
                 // Add other parameters as needed
             ]
+        },
+        {
+            pageNum: 5,
+            pagelabel: "Env 1",
+            parameters: [
+                { name: "env 1 attack", CC_in: 81, isNRPN: false, CC_out: 73, range: [0, 127] },    //encoder 2
+                { name: "env 1 sustain	", CC_in: 83, isNRPN: false, CC_out: 70, range: [0, 127] },    //encoder 4
+                { name: "none", CC_in: 85, isNRPN: false, CC_out: 00, range: [0, 127] },    //encoder 6
+                { name: "none", CC_in: 87, isNRPN: false, CC_out: 00, range: [0, 127] },    //encoder 8
+                { name: "env1 velocity", CC_in: 80, isNRPN: false, CC_out: 108, range: [0, 127] },    //encoder 1
+                { name: "env 1 decay", CC_in: 82, isNRPN: false, CC_out: 75, range: [0, 127] },    //encoder 3
+                { name: "env 1 release", CC_in: 84, isNRPN: false, CC_out: 72, range: [0, 127] },    //encoder 5
+                { name: "none", CC_in: 86, isNRPN: false, CC_out: 00, range: [0, 127] }    //encoder 7
+                // Add other parameters as needed
+            ]
+        },
+        {
+            pageNum: 6,
+            pagelabel: "Env 2",
+            parameters: [
+                { name: "env 2 attack", CC_in: 81, isNRPN: true, NRPN_val: "0:1", range: [0, 127] },    //encoder 2
+                { name: "env 2 sustain	", CC_in: 83, isNRPN: true, NRPN_val: "0:3", range: [0, 127] },    //encoder 4
+                { name: "none", CC_in: 85, isNRPN: false, CC_out: 00, range: [0, 127] },    //encoder 6
+                { name: "none", CC_in: 87, isNRPN: false, CC_out: 00, range: [0, 127] },    //encoder 8
+                { name: "env 2 velocity", CC_in: 80, isNRPN: true, NRPN_val: "0:0", range: [0, 127] },    //encoder 1
+                { name: "env 2 decay", CC_in: 82, isNRPN: true, NRPN_val: "0:2", range: [0, 127] },    //encoder 3
+                { name: "env 2 release", CC_in: 84, isNRPN: true, NRPN_val: "0:4", range: [0, 127] },    //encoder 5
+                { name: "none", CC_in: 86, isNRPN: false, CC_out: 00, range: [0, 127] }    //encoder 7
+                // Add other parameters as needed
+            ]
         }
         // Add other pages as needed
     ]

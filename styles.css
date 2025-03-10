@@ -20,6 +20,7 @@ button {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
+    position: relative; /* Added for positioning the triangle */
 }
 
 .parameter-label {
@@ -28,4 +29,45 @@ button {
 
 .empty {
     border: none;
+}
+
+#current-value {
+    font-weight: normal;
+    font-size: 16px;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+/* Additional styles for triangle indicators */
+.parameter-value {
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.triangle-indicator {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.triangle-indicator.left {
+    left: 10px;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent black transparent transparent;
+}
+
+.triangle-indicator.right {
+    right: 10px;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent black;
+}
+
+/* Removed conflicting styles for grid layout */
+.parameter {
+    /* Removed inline-block, width, margin, and vertical-align from here */
 }
