@@ -55,7 +55,7 @@ const midiConfig = {
                 { name: "Q normalize", CC_in: 87, isNRPN: false, CC_out: 78, range: [0, 127] },    //encoder 8
                 { name: "routing", CC_in: 80, isNRPN: false, CC_out: 60, range: [0, 2] },    //encoder 1
                 { name: "drive type", CC_in: 82, isNRPN: false, CC_out: 65, range: [0, 6] },    //encoder 3
-                { name: "frequency", CC_in: 84, isNRPN: false, CC_out: 74, range: [52, 82] },    //encoder 5
+                { name: "frequency", CC_in: 84, isNRPN: false, CC_out: 74, range: [0, 127] },    //encoder 5
                 { name: "resonance", CC_in: 86, isNRPN: false, CC_out: 71, range: [0, 127] }    //encoder 7
                 // Add other parameters as needed
             ]

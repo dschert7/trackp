@@ -1,73 +1,94 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 #tabs {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 button {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 #content {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
 }
 
 .parameter {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    position: relative; /* Added for positioning the triangle */
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  position: relative;
 }
 
 .parameter-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .empty {
-    border: none;
+  border: none;
 }
 
 #current-value {
-    font-weight: normal;
-    font-size: 16px;
-    margin-left: 20px;
-    vertical-align: middle;
+  font-weight: normal;
+  font-size: 16px;
+  margin-left: 20px;
+  vertical-align: middle;
 }
 
-/* Additional styles for triangle indicators */
+/* --- Parameter Value Block --- */
 .parameter-value {
-    position: relative;
-    font-size: 24px;
-    font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
 }
 
-.triangle-indicator {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-style: solid;
+.displayed-number {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.triangle-indicator.left {
-    left: 10px;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent black transparent transparent;
+/* --- Sliders Row ---
+     We set a fixed width so both left and right areas remain in their halves.
+     Each rectangle is 60px wide; a container width of 140px leaves room for a gap.
+*/
+.sliders {
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+  margin: 0 auto;
 }
 
-.triangle-indicator.right {
-    right: 10px;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent black;
+/* Both slider containers always occupy 60px; we use visibility to hide the inactive one */
+.left-slider-container,
+.right-slider-container {
+  width: 60px;
+  height: 10px;
+  border: 1px solid black;
+  background-color: white;
+  position: relative;
+  /* When not active, we’ll set visibility: hidden (so space is reserved) */
 }
 
-/* Removed conflicting styles for grid layout */
-.parameter {
-    /* Removed inline-block, width, margin, and vertical-align from here */
+/* The fill for the left slider is anchored to the right side */
+.left-slider-fill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: black;
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+/* The fill for the right slider is anchored to the left side */
+.right-slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: black;
+  width: 0%;
+  transition: width 0.2s ease;
 }
